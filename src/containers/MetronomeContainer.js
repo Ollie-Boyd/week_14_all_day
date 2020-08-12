@@ -7,20 +7,36 @@ class MetronomeContainer extends Component {
     super(props);
 
     this.state = {
-      bpm: 0,
+      bpm: 40,
       playing: false
     }
+    this.handleBPMChange = this.handleBPMChange.bind(this)
+    this.handlePlayingChange = this.handlePlayingChange.bind(this)
+  }
+
+  handleBPMChange(bpm){
+    this.setState({bpm: bpm})
+ }
+
+  handlePlayingChange(playing){
+    this.setState({ playing })
   }
 
   render() {
     return(
       <Fragment>
         <h1>Hello from Metronome Container</h1>
-        <InputParent/>
-        <Bpm/>
+        <InputParent 
+          playing={this.state.playing} 
+          bpm={this.state.bpm} 
+          handleBPMChange={this.handleBPMChange} 
+          handlePlayingChange={this.handlePlayingChange} 
+        />
+        <Bpm playing={this.state.playing} bpm={this.state.bpm} />
       </Fragment>
     )
   }
+
   
 }
 
